@@ -1,0 +1,22 @@
+'''from bs4 import BeautifulSoup
+from urllib.request import urlopen
+import re
+
+url = "http://olympus.realpython.org/profiles/dionysus"
+page = urlopen(url)
+html = page.read().decode("utf-8")
+soup = BeautifulSoup(html, "html.parser")
+print(soup)'''
+
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+baseUrl = "http://olympus.realpython.org"
+
+htmlPage = urlopen(baseUrl + "/profiles")
+htmlText = htmlPage.read().decode("utf-8")
+soup = BeautifulSoup(htmlText, "html.parser")
+for link in soup.find_all("a"):
+    linkUrl = baseUrl + link["href"]
+    print(linkUrl)
